@@ -1,17 +1,13 @@
-resource "aws_instance" "main" {
-ami           = "ami-07a0101b4055e3920" # us-east-1 devops-practice AMi
-instance_type = "t3.medium" 
-    tags = {
-    Name = "test"
-    }
-
-vpc_security_group_ids = ["sg-02efeff1df99019a6"]
-
-
-  ebs_block_device {
-    device_name = "/dev/sda1"
-    volume_size = 30
+resource "aws_instance" "my_ec2" {
+  launch_template {
+    id      = "lt-0ddc9c5f4c9eccc94"    # your launch template ID
+    version = "$Latest"                # or specific version like "3"
   }
-    }
- 
+
+  tags = {
+    Name = "MyEC2FromTemplate"
+  }
+}
+
+
 

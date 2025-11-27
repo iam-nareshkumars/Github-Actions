@@ -1,12 +1,7 @@
-name: Terraform CI/CD
+name: Terraform CI/CD launching ec2
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+ workflow_dispatch:
 
 jobs:
   terraform:
