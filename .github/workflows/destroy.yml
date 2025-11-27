@@ -27,6 +27,9 @@ jobs:
       uses: hashicorp/setup-terraform@v1
       with:
         terraform_version: ${{ env.TF_VERSION }}
+    
+    - name: 'Terraform Init'
+      run: terraform init
 
     
     - name: 'Terraform destroy'
