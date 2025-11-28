@@ -29,7 +29,7 @@ jobs:
         terraform_version: ${{ env.TF_VERSION }}
     
     - name: 'Terraform Init'
-      run: terraform -reconfigure init
+      run: terraform init -reconfigure
 
     
     - name: 'Terraform destroy'
