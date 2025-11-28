@@ -1,11 +1,27 @@
-resource "aws_instance" "my_ec2" {
-  launch_template {
-    id      = "lt-01469ce463faed971"    # your launch template ID
-    version = "2"                # or specific version like "3"
+resource "aws_launch_template" "example" {
+  name_prefix   = "my-template-"
+  image_id      = "ami-07a0101b4055e3920"  # replace with your AMI
+  instance_type = "t3.micro"
+                # optional: replace if you have a key
+
+  network_interfaces {
+    associate_public_ip_address = true
+    security_groups             = ["sg-02efeff1df99019a6"] # replace
   }
 
-  tags = {
-    Name = "MyEC2FromTemplate"
+  tag_specifications {
+    resource_type = "instance"
+
+    tags = {
+      Name = "LT-Managed-Instance"
+    }
+  }
+}
+
+resource "aws_instance" "my_ec2" {
+  launch_template {
+    id      = aws_launch_template.example.id
+    version = "$Latest"
   }
 }
 
