@@ -26,14 +26,15 @@ jobs:
       with:
         terraform_version: ${{ env.TF_VERSION }}
 
-    - name: 'Terraform Init'
+    - name: 'Terraform Initialization'
       run: terraform init
+      
     - name: 'Terraform Format'
-      run: terraform fmt
-    - name: 'Terraform Validate'
-      run: terraform validate
+      run: terraform fmt && terraform validate
+   
     - name: 'Terraform Plan'
       run: terraform plan
+
     - name: 'Terraform Apply'
       run: terraform apply -auto-approve
 
